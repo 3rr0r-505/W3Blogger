@@ -46,7 +46,7 @@ def save_payload_to_db(payload_data):
     payload_document = {"text": payload_data}
     payload_collection.insert_one(payload_document)
 
-if __name__ == '__main__':
-    webbrowser.open('http://127.0.0.1:8000')
-    app.run(host='127.0.0.1', port=8000) #for localhost
-    # app.run(host='0.0.0.0')
+# if __name__ == '__main__':
+#     webbrowser.open('http://127.0.0.1:8000')
+#     app.run(host='127.0.0.1', port=8000) #for localhost
+#     # app.run(host='0.0.0.0')
