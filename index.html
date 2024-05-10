@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Keylogger Output</title>
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <style>
-            body {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keylogger Output</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
                 background-color: black;
             }
 
@@ -119,46 +119,50 @@
                 margin-right: 7px;
                 font-weight: bold;
             }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <!--Top header section-->
-            <div class="header-section">
-                <div class="d-flex justify-content-between align-items-center">
-                    <!-- Left side: Refresh button -->
-                    <button class="btn btn-outline-light" id="refresh-btn" onclick="refreshOutput()">Refresh</button>
-                    <!-- KeySpy heading and logo -->
-                    <div class="logo-container">
-                        <img src="https://raw.githubusercontent.com/3rr0r-505/KeySpy/main/img/KeySpy-logo.png" alt="Logo" height="75px" align-item="left">
-                        <span class="logo-text">KeySpy</span>
-                    </div>
-                    <!-- Right side: Timer -->
-                    <div class="text-white" id="timer-clk">Timer: <span id="timer">30</span> seconds</div>
-                </div>
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <!--Top header section-->
+    <div class="header-section bg-red">
+        <div class="row align-items-center">
+            <!-- Left side: Refresh button -->
+            <div class="col-4 col-md-3 col-lg-2">
+                <button class="btn btn-outline-light" id="refresh-btn" onclick="refreshOutput()">Refresh</button>
             </div>
-            <!--Tab section-->
-            <div class="header-section">
-                <ul class="nav nav-tabs justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" id="payload-tab" data-toggle="tab" href="#payload">PAYLOAD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="keylog-tab" data-toggle="tab" href="#keylog">KEYLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="browserlog-tab" data-toggle="tab" href="#browserlog">BrowserLOG</a>
-                    </li>
-                </ul>
+            <!-- KeySpy heading and logo -->
+            <div class="col-4 col-md-6 col-lg-8 text-center">
+                <img src="https://raw.githubusercontent.com/3rr0r-505/KeySpy/main/img/KeySpy-logo.png" alt="Logo" height="75px">
+                <span class="logo-text">KeySpy</span>
             </div>
-            <!--output section-->
-            <div class="tab-content">
+            <!-- Right side: Timer -->
+            <div class="col-4 col-md-3 col-lg-2 text-right">
+                <div class="text-white" id="timer-clk">Timer: <span id="timer">30</span> seconds</div>
+            </div>
+        </div>
+    </div>
+    <!--Tab section-->
+    <div class="header-section">
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" id="payload-tab" data-toggle="tab" href="#payload">PAYLOAD</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="keylog-tab" data-toggle="tab" href="#keylog">KEYLOG</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="browserlog-tab" data-toggle="tab" href="#browserlog">BrowserLOG</a>
+            </li>
+        </ul>
+    </div>
+    <!--output section-->
+    <div class="tab-content">
                 <div class="tab-pane fade" id="payload">
-                    <h2 class="text-center">Payload Input</h2>
+                    <h2 class="text-center" style="color:white">Payload Input</h2>
                     <div class="pdng">
                         <form action="{{ url_for('save_payload') }}" method="post">
                             <div class="form-group">
-                                <label for="payloadInput">Enter Payload:</label>
+                                <label for="payloadInput" >Enter Payload:</label>
                                 <textarea class="form-control" id="payloadInput" name="payload" rows="5"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Run</button>
@@ -166,7 +170,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="keylog">
-                    <h2 class="text-center">Keylogger Output</h2>
+                    <h2 class="text-center" style="color:white">Keylogger Output</h2>
                     <div class="pdng" id="keylog-content">
                         <ul class="list-group">
                             {% for log in logs %}
@@ -176,7 +180,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="browserlog">
-                    <h2 class="text-center">BrowserLog Output</h2>
+                    <h2 class="text-center" style="color:white">BrowserLog Output</h2>
                     <div class="pdng" id="browserlog-content">
                         <ul class="list-group">
                             {% for log in site_logs %}
@@ -186,19 +190,18 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bootstrap JS and dependencies (optional) -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!--Custom JS-->
-        <script>
-            // Function to refresh the output section
-        // Function to refresh the output section
-        function refreshOutput() {
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--Custom JS-->
+<script>
+    function refreshOutput() {
             // Fetch updated data for each tab section using AJAX
             $.ajax({
                 type: "GET",
@@ -233,6 +236,6 @@
                 var display = document.getElementById("timer");
                 startTimer(30, display); // Start from 30 seconds
             };
-        </script>
-    </body>
+</script>
+</body>
 </html>
